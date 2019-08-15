@@ -1,24 +1,25 @@
-const express = require('express');
-const morgan = require('morgan');
-const path = require('path');
+const express = require("express");
+const morgan = require("morgan");
+const path = require("path");
 const app = express();
-const {moongoose} = require('./database');
+const { moongoose } = require("./database");
 
 //configuracion
-app.set('port', process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3000);
 
 //midedlewers
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.json());
 
 //Routes
-app.use('/api/task',require('./routes/task.routes'));
+app.use("/api/task", require("./routes/task.routes"));
+app.use("/api/cliente", require("./routes/cliente.routes"));
 
 //static files
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, "public")));
 
 //starting server
-app.listen(app.get('port'),()=>{
-    console.log(`Server on port ${app.get('port')}`);
+app.listen(app.get("port"), () => {
+  console.log(`Server on port ${app.get("port")}`);
 });
